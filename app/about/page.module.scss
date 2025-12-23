@@ -1,0 +1,56 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  padding: $spacing-2xl $spacing-md;
+  margin-top: $spacing-lg;
+
+  @include breakpoint(lg) {
+    padding: $spacing-2xl $spacing-lg;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.title {
+  font-size: $fs-4xl;
+  font-weight: 700;
+  color: $text-dark;
+  margin-bottom: $spacing-xl;
+  text-align: center;
+
+  @include breakpoint(md) {
+    font-size: $fs-5xl;
+  }
+}
+
+:root[data-theme='dark'] {
+  .title {
+    color: $text-dark-dark;
+  }
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.text {
+  font-size: $fs-lg;
+  color: $text-light;
+  line-height: 1.8;
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+:root[data-theme='dark'] {
+  .text {
+    color: $text-light-dark;
+  }
+}
+

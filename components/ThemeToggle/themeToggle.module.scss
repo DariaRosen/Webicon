@@ -1,0 +1,47 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.toggle {
+  @include button-reset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  color: $text-dark;
+  transition: all $transition-base;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba($primary-color, 0.1);
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: 2px solid $primary-color;
+    outline-offset: 2px;
+  }
+}
+
+:root[data-theme='dark'] {
+  .toggle {
+    color: $text-dark-dark;
+
+    &:hover {
+      background: rgba($primary-color-dark, 0.2);
+    }
+
+    &:focus {
+      outline-color: $primary-color-dark;
+    }
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  transition: transform $transition-base;
+}
+

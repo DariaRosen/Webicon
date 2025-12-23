@@ -1,0 +1,152 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.footer {
+  background: $bg-light;
+  border-top: 1px solid $border-color;
+  padding: $spacing-2xl 0 $spacing-lg;
+  margin-top: $spacing-2xl;
+  transition: background-color $transition-base, border-color $transition-base;
+}
+
+:root[data-theme='dark'] {
+  .footer {
+    background: $bg-light-dark;
+    border-top-color: $border-color-dark;
+  }
+}
+
+.container {
+  @include container;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-xl;
+
+  @include breakpoint(md) {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: 1.5fr 2fr;
+  }
+}
+
+.logoSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.logo {
+  max-height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.tagline {
+  font-size: $fs-base;
+  color: $text-light;
+  line-height: 1.6;
+}
+
+:root[data-theme='dark'] {
+  .tagline {
+    color: $text-light-dark;
+  }
+}
+
+.linksSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-xl;
+
+  @include breakpoint(md) {
+    gap: $spacing-2xl;
+  }
+}
+
+.linksColumn {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.columnTitle {
+  font-size: $fs-lg;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: $spacing-sm;
+}
+
+:root[data-theme='dark'] {
+  .columnTitle {
+    color: $text-dark-dark;
+  }
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.linksList a {
+  font-size: $fs-base;
+  color: $text-light;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+:root[data-theme='dark'] {
+  .linksList a {
+    color: $text-light-dark;
+
+    &:hover {
+      color: $primary-color-dark;
+    }
+  }
+}
+
+.bottom {
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-color;
+  text-align: center;
+}
+
+:root[data-theme='dark'] {
+  .bottom {
+    border-top-color: $border-color-dark;
+  }
+}
+
+.copyright {
+  font-size: $fs-sm;
+  color: $text-muted;
+}
+
+:root[data-theme='dark'] {
+  .copyright {
+    color: $text-muted-dark;
+  }
+}
+
+// RTL support
+[dir='rtl'] {
+  .content {
+    @include breakpoint(md) {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    @include breakpoint(lg) {
+      grid-template-columns: 2fr 1.5fr;
+    }
+  }
+}
+

@@ -1,0 +1,54 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.hero {
+  min-height: calc(100vh - var(--header-height, 100px));
+  @include flex-center;
+  background: linear-gradient(135deg, $primary-color 0%, $accent-color 100%);
+  border-radius: 0;
+  margin: 0;
+  padding: $spacing-2xl $spacing-md;
+
+  @include breakpoint(lg) {
+    padding: $spacing-2xl $spacing-lg;
+  }
+}
+
+:root[data-theme='dark'] {
+  .hero {
+    background: linear-gradient(
+      135deg,
+      $primary-color-dark 0%,
+      $accent-color-dark 100%
+    );
+  }
+}
+
+.container {
+  @include container;
+  text-align: center;
+}
+
+.title {
+  font-size: $fs-4xl;
+  font-weight: 700;
+  color: white;
+  margin-bottom: $spacing-lg;
+  line-height: 1.2;
+
+  @include breakpoint(md) {
+    font-size: $fs-5xl;
+  }
+}
+
+.subtitle {
+  font-size: $fs-xl;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include breakpoint(md) {
+    font-size: $fs-2xl;
+  }
+}
+
