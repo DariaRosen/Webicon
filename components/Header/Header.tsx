@@ -16,6 +16,9 @@ export const Header = () => {
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
 
+  const phoneNumber = '+972528395423';
+  const phoneDisplay = '052-8395423';
+
   const navigation: NavigationItem[] = [
     { label: t('home'), href: '/' },
     { label: t('about'), href: '/about' },
@@ -88,8 +91,26 @@ export const Header = () => {
           ))}
         </nav>
 
-        {/* Controls */}
+        {/* Contacts + Controls */}
         <div className={styles.controls}>
+          <div className={styles.contacts}>
+            <a
+              className={styles.whatsapp}
+              href="https://wa.me/972528395423"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open WhatsApp chat"
+            >
+              <img src="/whatsapp.webp" alt="WhatsApp" className={styles.whatsappIcon} />
+            </a>
+            <a
+              className={styles.phone}
+              href={`tel:${phoneNumber}`}
+              aria-label={language === 'en' ? 'Call us' : 'התקשרו אלינו'}
+            >
+              {phoneDisplay}
+            </a>
+          </div>
           <LanguageToggle />
           <ThemeToggle />
         </div>
