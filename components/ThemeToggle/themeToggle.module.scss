@@ -18,10 +18,9 @@
     background: rgba($primary-color, 0.1);
     transform: scale(1.1);
   }
-
   &:focus {
-    outline: 2px solid $primary-color;
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: none;
   }
 }
 
@@ -32,9 +31,9 @@
     &:hover {
       background: rgba($primary-color-dark, 0.2);
     }
-
     &:focus {
-      outline-color: $primary-color-dark;
+      outline: none;
+      box-shadow: none;
     }
   }
 }
