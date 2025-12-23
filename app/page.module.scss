@@ -5,9 +5,18 @@
   min-height: calc(100vh - var(--header-height, 100px));
   @include flex-center;
   background: linear-gradient(135deg, $primary-color 0%, $accent-color 100%);
+  width: 100%;
+  max-width: 100%;
   border-radius: 0;
   margin: 0;
   padding: $spacing-2xl $spacing-md;
+  box-shadow: none; // override global section shadow
+
+  // Override global section constraints (max-width/padding) so hero spans full width
+  &.hero {
+    max-width: 100%;
+    margin: 0;
+  }
 
   @include breakpoint(lg) {
     padding: $spacing-2xl $spacing-lg;
