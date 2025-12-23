@@ -177,21 +177,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba($primary-color, 0.12);
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  background: transparent;
   transition: all $transition-base;
 
   &:hover {
-    background: rgba($primary-color, 0.2);
     transform: scale(1.05);
   }
 }
 
 .whatsappIcon {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   display: block;
 }
@@ -202,11 +201,7 @@
   }
 
   .whatsapp {
-    background: rgba($primary-color-dark, 0.15);
-
-    &:hover {
-      background: rgba($primary-color-dark, 0.25);
-    }
+    background: transparent;
   }
 }
 
