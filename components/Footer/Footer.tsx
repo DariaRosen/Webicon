@@ -14,7 +14,7 @@ export const Footer = () => {
         <div className={styles.content}>
           <div className={styles.logoSection}>
             <img
-              src="/Webicon_logo.PNG"
+              src="/Webicon_logo_no_background.png"
               alt="Webicon Logo"
               className={styles.logo}
             />

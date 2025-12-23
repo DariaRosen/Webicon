@@ -72,7 +72,7 @@ export const Header = () => {
       <div className={styles.container}>
         {/* Logo */}
         <Link href="/" className={styles.logo}>
-          <img src="/Webicon_logo.PNG" alt="Webicon Logo" className={styles.logoImage} />
+          <img src="/Webicon_logo_no_background.png" alt="Webicon Logo" className={styles.logoImage} />
         </Link>
 
         {/* Navigation */}
