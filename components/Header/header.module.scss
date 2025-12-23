@@ -121,8 +121,7 @@
   }
 
   &:hover::after {
-    width: 80%;
-    left: 10%;
+    width: 100%;
   }
 }
 
@@ -152,8 +151,7 @@
 }
 
 .navItem.active::after {
-  width: 80%;
-  left: 10%;
+  width: 100%;
 }
 
 .controls {
