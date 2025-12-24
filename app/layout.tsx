@@ -15,6 +15,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Webicon - Apps, Websites & Landing Pages',
   description: 'We build amazing apps, websites, and landing pages',
+  icons: {
+    icon: '/Robot_icon-removebg.png',
+    shortcut: '/Robot_icon-removebg.png',
+    apple: '/Robot_icon-removebg.png',
+  },
 };
 
 export default function RootLayout({
