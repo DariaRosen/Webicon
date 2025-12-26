@@ -36,17 +36,27 @@ export const Header = () => {
       
       // Update active section based on scroll position
       if (pathname === '/') {
-        const sections = ['about', 'projects', 'products', 'reviews', 'clients', 'contact'];
         const headerHeight = headerRef.current?.offsetHeight || 100;
-        const scrollPosition = window.scrollY + headerHeight + 50;
+        const scrollPosition = window.scrollY;
         
+        // If we're at the top, clear active section
+        if (scrollPosition < 100) {
+          setActiveSection('');
+          return;
+        }
+        
+        const sections = ['about', 'projects', 'products', 'reviews', 'clients', 'contact'];
+        const scrollPositionWithOffset = scrollPosition + headerHeight + 50;
+        
+        let foundSection = '';
         for (let i = sections.length - 1; i >= 0; i--) {
           const section = document.getElementById(sections[i]);
-          if (section && section.offsetTop <= scrollPosition) {
-            setActiveSection(`#${sections[i]}`);
+          if (section && section.offsetTop <= scrollPositionWithOffset) {
+            foundSection = `#${sections[i]}`;
             break;
           }
         }
+        setActiveSection(foundSection);
       }
     };
 
@@ -122,6 +132,20 @@ export const Header = () => {
     }
   };
 
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    setIsMobileMenuOpen(false);
+    
+    // If we're on the home page, scroll to top and clear active section
+    if (pathname === '/') {
+      e.preventDefault();
+      setActiveSection('');
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <header
       ref={headerRef}
@@ -141,9 +165,9 @@ export const Header = () => {
                 key={item.href}
                 href={item.href}
                 className={`${styles.navItem} ${
-                  pathname === item.href ? styles.active : ''
+                  pathname === '/' && !activeSection ? styles.active : ''
                 }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={handleHomeClick}
               >
                 {item.label}
               </Link>
@@ -214,7 +238,7 @@ export const Header = () => {
                 key={item.href}
                 href={item.href}
                 className={styles.mobileNavItem}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={handleHomeClick}
               >
                 {item.label}
               </Link>
