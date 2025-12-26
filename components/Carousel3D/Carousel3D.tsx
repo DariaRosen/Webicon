@@ -124,17 +124,12 @@ export const Carousel3D = () => {
         key={language}
       >
         {projects.map((project) => {
-          const isFirstProject = project.id === '1';
-          const isSecondProject = project.id === '2';
-          const isThirdProject = project.id === '3';
+          const projectNumber = project.id;
           let imagePath = '/Devices';
           
-          if (isFirstProject) {
-            imagePath = '/Projects/Project1';
-          } else if (isSecondProject) {
-            imagePath = '/Projects/Project2';
-          } else if (isThirdProject) {
-            imagePath = '/Projects/Project3';
+          // Check if project has custom images (1-6)
+          if (['1', '2', '3', '4', '5', '6'].includes(projectNumber)) {
+            imagePath = `/Projects/Project${projectNumber}`;
           }
           
           return (
@@ -147,7 +142,7 @@ export const Carousel3D = () => {
                       alt="Laptop"
                       className={styles.deviceImage}
                     />
-                    {(isFirstProject || isSecondProject || isThirdProject) && (
+                    {['1', '2', '3', '4', '5', '6'].includes(projectNumber) && (
                       <img
                         src={`${imagePath}/Laptop.png`}
                         alt="Laptop Content"
@@ -161,7 +156,7 @@ export const Carousel3D = () => {
                       alt="Tablet"
                       className={styles.deviceImage}
                     />
-                    {(isFirstProject || isSecondProject || isThirdProject) && (
+                    {['1', '2', '3', '4', '5', '6'].includes(projectNumber) && (
                       <img
                         src={`${imagePath}/Tablet.png`}
                         alt="Tablet Content"
@@ -175,7 +170,7 @@ export const Carousel3D = () => {
                       alt="Smartphone"
                       className={styles.deviceImage}
                     />
-                    {(isFirstProject || isSecondProject || isThirdProject) && (
+                    {['1', '2', '3', '4', '5', '6'].includes(projectNumber) && (
                       <img
                         src={`${imagePath}/Smartphone.png`}
                         alt="Smartphone Content"
