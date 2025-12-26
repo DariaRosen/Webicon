@@ -98,6 +98,8 @@ export const Carousel3D = () => {
         navigation={true}
         modules={[EffectCoverflow, Navigation, Pagination, Autoplay]}
         className={styles.carousel}
+        dir={language === 'he' ? 'rtl' : 'ltr'}
+        key={language}
       >
         {projects.map((project) => (
           <SwiperSlide key={project.id} className={styles.slide}>

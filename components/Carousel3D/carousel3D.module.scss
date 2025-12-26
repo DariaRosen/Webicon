@@ -283,6 +283,7 @@
     transition: all $transition-base !important;
     background: rgba(255, 255, 255, 0.9) !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    z-index: 10 !important;
 
     @media (max-width: 560px) {
       width: 40px !important;
@@ -305,26 +306,55 @@
   }
 
   :global(.swiper-button-next) {
-    right: 24px !important;
+    right: 10px !important;
 
     @media (max-width: 880px) {
-      right: 16px !important;
+      right: 8px !important;
     }
 
     @media (max-width: 560px) {
-      right: 12px !important;
+      right: 4px !important;
     }
   }
 
   :global(.swiper-button-prev) {
-    left: 24px !important;
+    left: 10px !important;
 
     @media (max-width: 880px) {
-      left: 16px !important;
+      left: 8px !important;
     }
 
     @media (max-width: 560px) {
-      left: 12px !important;
+      left: 4px !important;
+    }
+  }
+
+  // RTL support for navigation buttons
+  [dir='rtl'] & {
+    :global(.swiper-button-next) {
+      left: 10px !important;
+      right: auto !important;
+
+      @media (max-width: 880px) {
+        left: 8px !important;
+      }
+
+      @media (max-width: 560px) {
+        left: 4px !important;
+      }
+    }
+
+    :global(.swiper-button-prev) {
+      right: 10px !important;
+      left: auto !important;
+
+      @media (max-width: 880px) {
+        right: 8px !important;
+      }
+
+      @media (max-width: 560px) {
+        right: 4px !important;
+      }
     }
   }
 
