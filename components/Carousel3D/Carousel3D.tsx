@@ -3,6 +3,8 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Navigation, Pagination, Autoplay } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
+import { useRef } from 'react';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
@@ -71,10 +73,30 @@ const projects: Project[] = [
 
 export const Carousel3D = () => {
   const { language } = useLanguage();
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  const handleMouseEnter = () => {
+    if (swiperRef.current?.autoplay) {
+      swiperRef.current.autoplay.stop();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (swiperRef.current?.autoplay) {
+      swiperRef.current.autoplay.start();
+    }
+  };
 
   return (
-    <div className={styles.carouselWrapper}>
+    <div 
+      className={styles.carouselWrapper}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
