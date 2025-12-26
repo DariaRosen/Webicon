@@ -123,41 +123,67 @@ export const Carousel3D = () => {
         dir={language === 'he' ? 'rtl' : 'ltr'}
         key={language}
       >
-        {projects.map((project) => (
-          <SwiperSlide key={project.id} className={styles.slide}>
-            <div className={styles.projectCard}>
-              <div className={styles.devicesContainer}>
-                <div className={`${styles.deviceWrapper} ${styles.deviceLaptop}`}>
-                  <img
-                    src="/Devices/Laptop.png"
-                    alt="Laptop"
-                    className={styles.deviceImage}
-                  />
+        {projects.map((project) => {
+          const isFirstProject = project.id === '1';
+          const imagePath = isFirstProject ? '/Projects/Project1' : '/Devices';
+          
+          return (
+            <SwiperSlide key={project.id} className={styles.slide}>
+              <div className={styles.projectCard}>
+                <div className={styles.devicesContainer}>
+                  <div className={`${styles.deviceWrapper} ${styles.deviceLaptop}`}>
+                    <img
+                      src="/Devices/Laptop.png"
+                      alt="Laptop"
+                      className={styles.deviceImage}
+                    />
+                    {isFirstProject && (
+                      <img
+                        src={`${imagePath}/Laptop.png`}
+                        alt="Laptop Content"
+                        className={styles.deviceScreenContent}
+                      />
+                    )}
+                  </div>
+                  <div className={`${styles.deviceWrapper} ${styles.deviceTablet}`}>
+                    <img
+                      src="/Devices/Tablet.png"
+                      alt="Tablet"
+                      className={styles.deviceImage}
+                    />
+                    {isFirstProject && (
+                      <img
+                        src={`${imagePath}/Tablet.png`}
+                        alt="Tablet Content"
+                        className={styles.deviceScreenContent}
+                      />
+                    )}
+                  </div>
+                  <div className={`${styles.deviceWrapper} ${styles.deviceSmartphone}`}>
+                    <img
+                      src="/Devices/Smartphone.png"
+                      alt="Smartphone"
+                      className={styles.deviceImage}
+                    />
+                    {isFirstProject && (
+                      <img
+                        src={`${imagePath}/Smartphone.png`}
+                        alt="Smartphone Content"
+                        className={styles.deviceScreenContent}
+                      />
+                    )}
+                  </div>
                 </div>
-                <div className={`${styles.deviceWrapper} ${styles.deviceTablet}`}>
-                  <img
-                    src="/Devices/Tablet.png"
-                    alt="Tablet"
-                    className={styles.deviceImage}
-                  />
-                </div>
-                <div className={`${styles.deviceWrapper} ${styles.deviceSmartphone}`}>
-                  <img
-                    src="/Devices/Smartphone.png"
-                    alt="Smartphone"
-                    className={styles.deviceImage}
-                  />
-                </div>
+                <h3 className={styles.projectTitle}>
+                  {language === 'en' ? project.enTitle : project.heTitle}
+                </h3>
+                <p className={styles.projectDescription}>
+                  {language === 'en' ? project.enDesc : project.heDesc}
+                </p>
               </div>
-              <h3 className={styles.projectTitle}>
-                {language === 'en' ? project.enTitle : project.heTitle}
-              </h3>
-              <p className={styles.projectDescription}>
-                {language === 'en' ? project.enDesc : project.heDesc}
-              </p>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

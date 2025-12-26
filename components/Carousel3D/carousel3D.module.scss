@@ -89,7 +89,7 @@
 }
 
 .deviceWrapper {
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,6 +124,7 @@
 }
 
 .deviceTablet {
+  position: absolute;
   z-index: 2;
   left: -10%;
   bottom: -10px;
@@ -150,6 +151,7 @@
 }
 
 .deviceSmartphone {
+  position: absolute;
   z-index: 3;
   right: -10%;
   bottom: -5px;
@@ -188,9 +190,41 @@
   cursor: pointer;
 }
 
+.deviceScreenContent {
+  position: absolute;
+  width: 75%;
+  height: auto;
+  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 1;
+  pointer-events: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform $transition-base;
+  will-change: transform;
+}
+
+// Specific positioning for each device screen
+.deviceLaptop .deviceScreenContent {
+  width: 85%;
+  top: 45%;
+}
+
+.deviceTablet .deviceScreenContent {
+  width: 80%;
+  top: 50%;
+}
+
+.deviceSmartphone .deviceScreenContent {
+  width: 70%;
+  top: 50%;
+}
+
 .deviceWrapper:hover .deviceImage {
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
-  animation: float 2s ease-in-out infinite;
 }
 
 @keyframes float {
