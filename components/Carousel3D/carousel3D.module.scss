@@ -118,7 +118,6 @@
   }
 
   &:hover {
-    transform: translate(-50%, -50%) translateY(-20px) scale(1.1);
     z-index: 10;
   }
 }
@@ -145,7 +144,6 @@
   }
 
   &:hover {
-    transform: rotate(-10deg) translateY(-15px) translateX(10px) scale(1.15);
     z-index: 10;
   }
 }
@@ -172,7 +170,6 @@
   }
 
   &:hover {
-    transform: rotate(20deg) translateY(-15px) translateX(-10px) scale(1.2);
     z-index: 10;
   }
 }
@@ -236,42 +233,54 @@
   }
 }
 
-.deviceLaptop:hover .deviceImage {
+.deviceLaptop:hover {
   animation: floatLaptop 2s ease-in-out infinite;
+}
+
+.deviceLaptop:hover .deviceImage {
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
 }
 
 @keyframes floatLaptop {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translate(-50%, -50%) translateY(-20px) scale(1.1) translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-10px) rotate(2deg);
+    transform: translate(-50%, -50%) translateY(-20px) scale(1.1) translateY(-10px) rotate(2deg);
   }
 }
 
-.deviceTablet:hover .deviceImage {
+.deviceTablet:hover {
   animation: floatTablet 2s ease-in-out infinite;
+}
+
+.deviceTablet:hover .deviceImage {
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
 }
 
 @keyframes floatTablet {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: rotate(-10deg) translateY(-15px) translateX(10px) scale(1.15) translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px) rotate(-3deg);
+    transform: rotate(-10deg) translateY(-15px) translateX(10px) scale(1.15) translateY(-8px) rotate(-3deg);
   }
 }
 
-.deviceSmartphone:hover .deviceImage {
+.deviceSmartphone:hover {
   animation: floatSmartphone 2s ease-in-out infinite;
+}
+
+.deviceSmartphone:hover .deviceImage {
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
 }
 
 @keyframes floatSmartphone {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: rotate(20deg) translateY(-15px) translateX(-10px) scale(1.2) translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px) rotate(3deg);
+    transform: rotate(20deg) translateY(-15px) translateX(-10px) scale(1.2) translateY(-8px) rotate(3deg);
   }
 }
 
