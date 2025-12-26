@@ -1,0 +1,290 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use 'sass:color';
+
+.carouselWrapper {
+  width: 100%;
+  position: relative;
+  padding: $spacing-2xl 0;
+  overflow: hidden;
+}
+
+.carousel {
+  width: 100%;
+  padding: $spacing-2xl 0 $spacing-2xl;
+  overflow: visible;
+}
+
+.slide {
+  width: 80%;
+  max-width: 500px;
+  height: auto;
+  transition: transform 0.3s ease;
+
+  @include breakpoint(sm) {
+    width: 70%;
+  }
+
+  @include breakpoint(md) {
+    width: 60%;
+    max-width: 600px;
+  }
+
+  @include breakpoint(lg) {
+    width: 50%;
+    max-width: 700px;
+  }
+}
+
+.projectCard {
+  background: $bg-light;
+  border: 1px solid $border-color;
+  border-radius: 24px;
+  padding: $spacing-xl;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transition: all $transition-base;
+  overflow: visible;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 500px;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+}
+
+:root[data-theme='dark'] {
+  .projectCard {
+    background: $bg-light-dark;
+    border-color: $border-color-dark;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+    &:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.devicesContainer {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  height: 300px;
+  margin-bottom: $spacing-lg;
+  margin-top: $spacing-md;
+  overflow: visible !important;
+
+  @include breakpoint(sm) {
+    min-height: 340px;
+    height: 340px;
+  }
+
+  @include breakpoint(md) {
+    min-height: 380px;
+    height: 380px;
+  }
+}
+
+.deviceWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.deviceLaptop {
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 280px;
+
+  @include breakpoint(sm) {
+    max-width: 320px;
+  }
+
+  @include breakpoint(md) {
+    max-width: 360px;
+  }
+}
+
+.deviceTablet {
+  z-index: 2;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  max-width: 180px;
+  transform: rotate(-15deg);
+
+  @include breakpoint(sm) {
+    max-width: 220px;
+    left: 5%;
+    bottom: 15px;
+  }
+
+  @include breakpoint(md) {
+    max-width: 260px;
+    left: 8%;
+    bottom: 20px;
+  }
+}
+
+.deviceSmartphone {
+  z-index: 3;
+  right: 0;
+  bottom: 10px;
+  width: 100%;
+  max-width: 100px;
+  transform: rotate(15deg);
+
+  @include breakpoint(sm) {
+    max-width: 120px;
+    right: 5%;
+    bottom: 15px;
+  }
+
+  @include breakpoint(md) {
+    max-width: 140px;
+    right: 8%;
+    bottom: 20px;
+  }
+}
+
+.deviceImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block !important;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+  transition: transform $transition-base;
+  pointer-events: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.projectTitle {
+  font-size: $fs-2xl;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: $spacing-sm;
+  text-align: center;
+}
+
+:root[data-theme='dark'] {
+  .projectTitle {
+    color: $text-dark-dark;
+  }
+}
+
+.projectDescription {
+  font-size: $fs-base;
+  color: $text-light;
+  line-height: 1.6;
+  text-align: center;
+  margin: 0;
+}
+
+:root[data-theme='dark'] {
+  .projectDescription {
+    color: $text-light-dark;
+  }
+}
+
+// Swiper Navigation Buttons
+.carouselWrapper {
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    color: $primary-color !important;
+    width: 48px !important;
+    height: 48px !important;
+    margin-top: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    border-radius: 50% !important;
+    transition: all $transition-base !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+
+    @media (max-width: 560px) {
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    &:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
+      transform: translateY(-50%) scale(1.1) !important;
+    }
+
+    &::after {
+      font-size: 20px !important;
+      font-weight: 700 !important;
+
+      @media (max-width: 560px) {
+        font-size: 16px !important;
+      }
+    }
+  }
+
+  :global(.swiper-button-next) {
+    right: 24px !important;
+
+    @media (max-width: 880px) {
+      right: 16px !important;
+    }
+
+    @media (max-width: 560px) {
+      right: 12px !important;
+    }
+  }
+
+  :global(.swiper-button-prev) {
+    left: 24px !important;
+
+    @media (max-width: 880px) {
+      left: 16px !important;
+    }
+
+    @media (max-width: 560px) {
+      left: 12px !important;
+    }
+  }
+
+  :global(.swiper-button-disabled) {
+    opacity: 0.35 !important;
+    cursor: not-allowed !important;
+  }
+
+  // Swiper Pagination
+  :global(.swiper-pagination-bullet) {
+    background: $primary-color !important;
+    opacity: 0.5 !important;
+    width: 12px !important;
+    height: 12px !important;
+    transition: all $transition-base !important;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    opacity: 1 !important;
+    transform: scale(1.2) !important;
+  }
+}
+
+:root[data-theme='dark'] {
+  .carouselWrapper {
+    :global(.swiper-button-next),
+    :global(.swiper-button-prev) {
+      background: rgba($bg-off-white-dark, 0.9) !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    :global(.swiper-pagination-bullet) {
+      background: $primary-color-dark !important;
+    }
+  }
+}
+
