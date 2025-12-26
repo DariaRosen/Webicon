@@ -126,12 +126,15 @@ export const Carousel3D = () => {
         {projects.map((project) => {
           const isFirstProject = project.id === '1';
           const isSecondProject = project.id === '2';
+          const isThirdProject = project.id === '3';
           let imagePath = '/Devices';
           
           if (isFirstProject) {
             imagePath = '/Projects/Project1';
           } else if (isSecondProject) {
             imagePath = '/Projects/Project2';
+          } else if (isThirdProject) {
+            imagePath = '/Projects/Project3';
           }
           
           return (
@@ -144,7 +147,7 @@ export const Carousel3D = () => {
                       alt="Laptop"
                       className={styles.deviceImage}
                     />
-                    {(isFirstProject || isSecondProject) && (
+                    {(isFirstProject || isSecondProject || isThirdProject) && (
                       <img
                         src={`${imagePath}/Laptop.png`}
                         alt="Laptop Content"
@@ -158,7 +161,7 @@ export const Carousel3D = () => {
                       alt="Tablet"
                       className={styles.deviceImage}
                     />
-                    {(isFirstProject || isSecondProject) && (
+                    {(isFirstProject || isSecondProject || isThirdProject) && (
                       <img
                         src={`${imagePath}/Tablet.png`}
                         alt="Tablet Content"
@@ -172,7 +175,7 @@ export const Carousel3D = () => {
                       alt="Smartphone"
                       className={styles.deviceImage}
                     />
-                    {(isFirstProject || isSecondProject) && (
+                    {(isFirstProject || isSecondProject || isThirdProject) && (
                       <img
                         src={`${imagePath}/Smartphone.png`}
                         alt="Smartphone Content"
