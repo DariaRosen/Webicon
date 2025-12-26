@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Carousel3D } from '@/components/Carousel3D/Carousel3D';
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -46,60 +47,7 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>
             {language === 'en' ? 'Our Projects' : 'הפרויקטים שלנו'}
           </h2>
-          <div className={styles.cardGrid}>
-            {[
-              {
-                enTitle: 'Project 1',
-                heTitle: 'פרויקט 1',
-                enDesc: 'A modern web app built with cutting-edge tech.',
-                heDesc: 'אפליקציית ווב מודרנית שנבנתה בטכנולוגיות מתקדמות.',
-              },
-              {
-                enTitle: 'Project 2',
-                heTitle: 'פרויקט 2',
-                enDesc: 'An innovative mobile experience solving real problems.',
-                heDesc: 'חוויית מובייל חדשנית שפותרת בעיות אמיתיות.',
-              },
-              {
-                enTitle: 'Project 3',
-                heTitle: 'פרויקט 3',
-                enDesc: 'A high-converting landing page for campaigns.',
-                heDesc: 'דף נחיתה עם המרה גבוהה לקמפיינים.',
-              },
-            ].map((item) => (
-              <div key={item.enTitle} className={styles.card}>
-                <div className={styles.devicesContainer}>
-                  <div className={`${styles.deviceWrapper} ${styles.deviceLaptop}`}>
-                    <img
-                      src="/Devices/Laptop.png"
-                      alt="Laptop"
-                      className={styles.deviceImage}
-                    />
-                  </div>
-                  <div className={`${styles.deviceWrapper} ${styles.deviceTablet}`}>
-                    <img
-                      src="/Devices/Tablet.png"
-                      alt="Tablet"
-                      className={styles.deviceImage}
-                    />
-                  </div>
-                  <div className={`${styles.deviceWrapper} ${styles.deviceSmartphone}`}>
-                    <img
-                      src="/Devices/Smartphone.png"
-                      alt="Smartphone"
-                      className={styles.deviceImage}
-                    />
-                  </div>
-                </div>
-                <h3 className={styles.cardTitle}>
-                  {language === 'en' ? item.enTitle : item.heTitle}
-                </h3>
-                <p className={styles.cardText}>
-                  {language === 'en' ? item.enDesc : item.heDesc}
-                </p>
-              </div>
-            ))}
-          </div>
+          <Carousel3D />
         </div>
       </section>
 
@@ -219,28 +167,69 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>
             {language === 'en' ? 'Contact Us' : 'צור קשר'}
           </h2>
-          <p className={styles.sectionText}>
-            {language === 'en'
-              ? 'We would love to hear from you. Send us a message and we will respond as soon as possible.'
-              : 'נשמח לשמוע מכם. שלחו לנו הודעה ונחזור אליכם בהקדם.'}
-          </p>
-          <form className={styles.form}>
-            <label className={styles.label}>
-              {language === 'en' ? 'Name' : 'שם'}
-              <input className={styles.input} type="text" required />
-            </label>
-            <label className={styles.label}>
-              {language === 'en' ? 'Email' : 'אימייל'}
-              <input className={styles.input} type="email" required />
-            </label>
-            <label className={styles.label}>
-              {language === 'en' ? 'Message' : 'הודעה'}
-              <textarea className={styles.textarea} rows={4} required />
-            </label>
-            <button type="submit" className={styles.button}>
-              {language === 'en' ? 'Send Message' : 'שלח הודעה'}
-            </button>
-          </form>
+          <div className={styles.contactContent}>
+            <div className={styles.contactInfo}>
+              <h3 className={styles.infoTitle}>
+                {language === 'en' ? 'Get in Touch' : 'צרו קשר'}
+              </h3>
+              <p className={styles.infoText}>
+                {language === 'en'
+                  ? 'We would love to hear from you. Send us a message and we will respond as soon as possible.'
+                  : 'נשמח לשמוע מכם. שלחו לנו הודעה ואנו נגיב בהקדם האפשרי.'}
+              </p>
+              <div className={styles.contactDetails}>
+                <p className={styles.detail}>
+                  <strong>{language === 'en' ? 'Email:' : 'אימייל:'}</strong>{' '}
+                  info@webicon.com
+                </p>
+                <p className={styles.detail}>
+                  <strong>{language === 'en' ? 'Phone:' : 'טלפון:'}</strong> +972
+                  50-123-4567
+                </p>
+              </div>
+            </div>
+            <form className={styles.form}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.label}>
+                  {language === 'en' ? 'Name' : 'שם'}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className={styles.input}
+                  required
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="email" className={styles.label}>
+                  {language === 'en' ? 'Email' : 'אימייל'}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className={styles.input}
+                  required
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="message" className={styles.label}>
+                  {language === 'en' ? 'Message' : 'הודעה'}
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  className={styles.textarea}
+                  rows={5}
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" className={styles.button}>
+                {language === 'en' ? 'Send Message' : 'שלח הודעה'}
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </>

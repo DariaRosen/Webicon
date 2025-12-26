@@ -9,6 +9,9 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
 }
 
 body {
@@ -21,6 +24,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: 300;
   transition: background-color $transition-base, color $transition-base;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100%;
 }
 
 // Dark mode styles

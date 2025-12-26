@@ -315,12 +315,83 @@
   }
 }
 
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-2xl;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include breakpoint(lg) {
+    grid-template-columns: 1fr 1.5fr;
+    gap: $spacing-2xl;
+  }
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.infoTitle {
+  font-size: $fs-2xl;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: $spacing-sm;
+}
+
+:root[data-theme='dark'] {
+  .infoTitle {
+    color: $text-dark-dark;
+  }
+}
+
+.infoText {
+  font-size: $fs-base;
+  color: $text-light;
+  line-height: 1.8;
+}
+
+:root[data-theme='dark'] {
+  .infoText {
+    color: $text-light-dark;
+  }
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+}
+
+.detail {
+  font-size: $fs-base;
+  color: $text-dark;
+  line-height: 1.6;
+
+  strong {
+    font-weight: 600;
+  }
+}
+
+:root[data-theme='dark'] {
+  .detail {
+    color: $text-dark-dark;
+  }
+}
+
 .form {
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
-  max-width: 640px;
-  margin: 0 auto;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
 }
 
 .label {

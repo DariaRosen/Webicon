@@ -33,7 +33,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <Header />
-            <main style={{ paddingTop: 'var(--header-height, 100px)' }}>
+            <main style={{ paddingTop: 'var(--header-height, 100px)', minHeight: 'calc(100vh - var(--header-height, 100px))' }}>
               {children}
             </main>
             <Footer />
