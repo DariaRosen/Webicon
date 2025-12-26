@@ -13,6 +13,7 @@ export const Header = () => {
   const { t, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
 
@@ -21,22 +22,56 @@ export const Header = () => {
 
   const navigation: NavigationItem[] = [
     { label: t('home'), href: '/' },
-    { label: t('about'), href: '/about' },
-    { label: t('projects'), href: '/projects' },
-    { label: t('products'), href: '/products' },
-    { label: t('reviews'), href: '/reviews' },
-    { label: t('clients'), href: '/clients' },
-    { label: t('contact'), href: '/contact' },
+    { label: t('about'), href: '#about' },
+    { label: t('projects'), href: '#projects' },
+    { label: t('products'), href: '#products' },
+    { label: t('reviews'), href: '#reviews' },
+    { label: t('clients'), href: '#clients' },
+    { label: t('contact'), href: '#contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      
+      // Update active section based on scroll position
+      if (pathname === '/') {
+        const sections = ['about', 'projects', 'products', 'reviews', 'clients', 'contact'];
+        const headerHeight = headerRef.current?.offsetHeight || 100;
+        const scrollPosition = window.scrollY + headerHeight + 50;
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = document.getElementById(sections[i]);
+          if (section && section.offsetTop <= scrollPosition) {
+            setActiveSection(`#${sections[i]}`);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on mount
+    
+    // Handle hash navigation on page load
+    if (pathname === '/' && window.location.hash) {
+      const hash = window.location.hash;
+      setTimeout(() => {
+        const section = document.getElementById(hash.substring(1));
+        if (section) {
+          const headerHeight = headerRef.current?.offsetHeight || 100;
+          const sectionTop = section.offsetTop - headerHeight;
+          window.scrollTo({
+            top: sectionTop,
+            behavior: 'smooth',
+          });
+          setActiveSection(hash);
+        }
+      }, 100);
+    }
+    
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const updateHeaderHeight = () => {
@@ -60,8 +95,31 @@ export const Header = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
 
-  const handleNavClick = () => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setIsMobileMenuOpen(false);
+    
+    // If it's an anchor link (starts with #)
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      
+      // If we're not on the home page, navigate there first
+      if (pathname !== '/') {
+        window.location.href = `/${href}`;
+        return;
+      }
+      
+      // Scroll to the section
+      const sectionId = href.substring(1);
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const headerHeight = headerRef.current?.offsetHeight || 100;
+        const sectionTop = section.offsetTop - headerHeight;
+        window.scrollTo({
+          top: sectionTop,
+          behavior: 'smooth',
+        });
+      }
+    }
   };
 
   return (
@@ -78,16 +136,29 @@ export const Header = () => {
         {/* Navigation */}
         <nav className={styles.nav}>
           {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`${styles.navItem} ${
-                pathname === item.href ? styles.active : ''
-              }`}
-              onClick={handleNavClick}
-            >
-              {item.label}
-            </Link>
+            item.href === '/' ? (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${styles.navItem} ${
+                  pathname === item.href ? styles.active : ''
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`${styles.navItem} ${
+                  pathname === '/' && activeSection === item.href ? styles.active : ''
+                }`}
+                onClick={(e) => handleNavClick(e, item.href)}
+              >
+                {item.label}
+              </a>
+            )
           ))}
         </nav>
 
@@ -138,14 +209,25 @@ export const Header = () => {
       >
         <nav className={styles.mobileNav}>
           {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={styles.mobileNavItem}
-              onClick={handleNavClick}
-            >
-              {item.label}
-            </Link>
+            item.href === '/' ? (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={styles.mobileNavItem}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.href}
+                href={item.href}
+                className={styles.mobileNavItem}
+                onClick={(e) => handleNavClick(e, item.href)}
+              >
+                {item.label}
+              </a>
+            )
           ))}
         </nav>
       </div>
