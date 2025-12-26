@@ -42,12 +42,20 @@
 @mixin container {
   width: 100%;
   max-width: 1280px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 $spacing-md;
 
   @include breakpoint(lg) {
     padding: 0 $spacing-lg;
   }
+}
+
+// Ensure containers are centered in both LTR and RTL
+[dir='ltr'] .container,
+[dir='rtl'] .container {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Button Reset

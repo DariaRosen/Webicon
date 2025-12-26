@@ -42,7 +42,9 @@ section {
   background-color: $bg-light;
   border-radius: 32px;
   padding: $spacing-md;
-  margin: 0 auto $spacing-2xl;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: $spacing-2xl;
   max-width: 1400px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
   transition: background-color $transition-base, box-shadow $transition-base;
@@ -50,6 +52,13 @@ section {
   @include breakpoint(lg) {
     padding: $spacing-lg;
   }
+}
+
+// Ensure sections are centered in both LTR and RTL
+[dir='ltr'] section,
+[dir='rtl'] section {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 :root[data-theme='dark'] {
