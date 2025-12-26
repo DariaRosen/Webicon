@@ -206,18 +206,24 @@
 
 // Specific positioning for each device screen
 .deviceLaptop .deviceScreenContent {
-  width: 85%;
+  width: 74%;
   top: 45%;
+  max-height: 67%;
+  object-fit: contain;
 }
 
 .deviceTablet .deviceScreenContent {
-  width: 80%;
+  width: 75%;
   top: 50%;
+  max-height: 70%;
+  object-fit: contain;
 }
 
 .deviceSmartphone .deviceScreenContent {
-  width: 70%;
+  width: 65%;
   top: 50%;
+  max-height: 75%;
+  object-fit: contain;
 }
 
 .deviceWrapper:hover .deviceImage {
