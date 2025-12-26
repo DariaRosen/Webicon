@@ -68,6 +68,29 @@ export default function Home() {
               },
             ].map((item) => (
               <div key={item.enTitle} className={styles.card}>
+                <div className={styles.devicesContainer}>
+                  <div className={`${styles.deviceWrapper} ${styles.deviceLaptop}`}>
+                    <img
+                      src="/Devices/Laptop.png"
+                      alt="Laptop"
+                      className={styles.deviceImage}
+                    />
+                  </div>
+                  <div className={`${styles.deviceWrapper} ${styles.deviceTablet}`}>
+                    <img
+                      src="/Devices/Tablet.png"
+                      alt="Tablet"
+                      className={styles.deviceImage}
+                    />
+                  </div>
+                  <div className={`${styles.deviceWrapper} ${styles.deviceSmartphone}`}>
+                    <img
+                      src="/Devices/Smartphone.png"
+                      alt="Smartphone"
+                      className={styles.deviceImage}
+                    />
+                  </div>
+                </div>
                 <h3 className={styles.cardTitle}>
                   {language === 'en' ? item.enTitle : item.heTitle}
                 </h3>

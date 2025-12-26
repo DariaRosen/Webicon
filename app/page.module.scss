@@ -1,5 +1,6 @@
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
+@use 'sass:color';
 
 .hero {
   min-height: calc(100vh - var(--header-height, 100px));
@@ -139,6 +140,8 @@
   padding: $spacing-lg;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transition: all $transition-base;
+  overflow: visible;
+  position: relative;
 
   &:hover {
     transform: translateY(-4px);
@@ -155,6 +158,123 @@
     &:hover {
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
     }
+  }
+}
+
+.devicesContainer {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  height: 300px;
+  margin-bottom: $spacing-lg;
+  margin-top: $spacing-md;
+  overflow: visible !important;
+
+  @include breakpoint(sm) {
+    min-height: 340px;
+    height: 340px;
+  }
+
+  @include breakpoint(md) {
+    min-height: 380px;
+    height: 380px;
+  }
+}
+
+.deviceWrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.deviceLaptop {
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 280px;
+
+  @include breakpoint(sm) {
+    max-width: 320px;
+  }
+
+  @include breakpoint(md) {
+    max-width: 360px;
+  }
+}
+
+.deviceTablet {
+  z-index: 2;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+  max-width: 180px;
+  transform: rotate(-15deg);
+
+  @include breakpoint(sm) {
+    max-width: 220px;
+    left: 5%;
+    bottom: 15px;
+  }
+
+  @include breakpoint(md) {
+    max-width: 260px;
+    left: 8%;
+    bottom: 20px;
+  }
+}
+
+.deviceSmartphone {
+  z-index: 3;
+  right: 0;
+  bottom: 10px;
+  width: 100%;
+  max-width: 100px;
+  transform: rotate(15deg);
+
+  @include breakpoint(sm) {
+    max-width: 120px;
+    right: 5%;
+    bottom: 15px;
+  }
+
+  @include breakpoint(md) {
+    max-width: 140px;
+    right: 8%;
+    bottom: 20px;
+  }
+}
+
+.deviceImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block !important;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+  transition: transform $transition-base;
+  pointer-events: auto;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.deviceLaptop:hover .deviceImage {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.deviceTablet:hover .deviceImage {
+  transform: translateY(-4px) scale(1.05) rotate(-15deg);
+}
+
+.deviceSmartphone:hover .deviceImage {
+  transform: translateY(-4px) scale(1.05) rotate(15deg);
+}
+
+:root[data-theme='dark'] {
+  .deviceImage {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -269,7 +389,7 @@
   min-width: 180px;
 
   &:hover {
-    background: darken($primary-color, 8%);
+    background: color.adjust($primary-color, $lightness: -8%);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba($primary-color, 0.25);
   }
@@ -284,7 +404,7 @@
     background: $primary-color-dark;
 
     &:hover {
-      background: lighten($primary-color-dark, 8%);
+      background: color.adjust($primary-color-dark, $lightness: 8%);
       box-shadow: 0 8px 20px rgba($primary-color-dark, 0.3);
     }
   }
