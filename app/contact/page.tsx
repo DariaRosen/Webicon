@@ -25,11 +25,11 @@ export default function Contact() {
             <div className={styles.contactDetails}>
               <p className={styles.detail}>
                 <strong>{language === 'en' ? 'Email:' : 'אימייל:'}</strong>{' '}
-                info@webicon.com
+                contact@webicon.com
               </p>
               <p className={styles.detail}>
                 <strong>{language === 'en' ? 'Phone:' : 'טלפון:'}</strong> +972
-                50-123-4567
+                052-8395423
               </p>
             </div>
           </div>
@@ -79,4 +79,5 @@ export default function Contact() {
     </section>
   );
 }
+
 
