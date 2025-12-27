@@ -42,18 +42,13 @@
 
 .container {
   width: 100%;
-  max-width: 1400px;
-  padding: $spacing-sm $spacing-md;
-  margin: 0 auto;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: $spacing-md;
   position: relative;
 
-  @include breakpoint(lg) {
-    padding: $spacing-sm $spacing-lg;
-  }
 }
 
 .logo {
@@ -61,9 +56,23 @@
   align-items: center;
   flex-shrink: 0;
   z-index: 10;
+  margin-left: $spacing-xs;
+
+  @include breakpoint(md) {
+    margin-left: $spacing-sm;
+  }
 
   @media (max-width: 560px) {
     max-width: 120px;
+  }
+}
+
+[dir='rtl'] .logo {
+  margin-left: 0;
+  margin-right: $spacing-xs;
+
+  @include breakpoint(md) {
+    margin-right: $spacing-sm;
   }
 }
 
@@ -159,6 +168,46 @@
   align-items: center;
   gap: $spacing-sm;
   flex-shrink: 0;
+  margin-right: $spacing-xs;
+
+  @include breakpoint(md) {
+    margin-right: $spacing-sm;
+  }
+}
+
+[dir='rtl'] .controls {
+  margin-right: 0;
+  margin-left: $spacing-xs;
+
+  @include breakpoint(md) {
+    margin-left: $spacing-sm;
+  }
+}
+
+.togglesGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+  padding-left: $spacing-sm;
+  border-left: 1px solid rgba($border-color, 0.6);
+}
+
+[dir='rtl'] .togglesGroup {
+  padding-left: 0;
+  padding-right: $spacing-sm;
+  border-left: none;
+  border-right: 1px solid rgba($border-color, 0.6);
+}
+
+:root[data-theme='dark'] {
+  .togglesGroup {
+    border-left-color: rgba($border-color-dark, 0.6);
+  }
+
+  [dir='rtl'] .togglesGroup {
+    border-right-color: rgba($border-color-dark, 0.6);
+  }
 }
 
 .contacts {
@@ -177,8 +226,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 0;
   background: transparent;
   transition: all $transition-base;
@@ -189,8 +238,8 @@
 }
 
 .whatsappIcon {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   object-fit: contain;
   display: block;
 }

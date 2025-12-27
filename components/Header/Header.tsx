@@ -206,8 +206,10 @@ export const Header = () => {
               {phoneDisplay}
             </a>
           </div>
-          <LanguageToggle />
-          <ThemeToggle />
+          <div className={styles.togglesGroup}>
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
