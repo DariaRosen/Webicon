@@ -104,6 +104,10 @@
   @include breakpoint(lg) {
     gap: $spacing-md;
   }
+
+  @media (min-width: 1300px) and (max-width: 1500px) {
+    gap: $spacing-sm;
+  }
 }
 
 .navItem {
@@ -121,6 +125,10 @@
   @include breakpoint(lg) {
     font-size: $fs-base;
     padding: $spacing-xs $spacing-sm;
+  }
+
+  @media (min-width: 1300px) and (max-width: 1500px) {
+    padding: $spacing-xs * 0.5 $spacing-xs;
   }
 
   &::after {
