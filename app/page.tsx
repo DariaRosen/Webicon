@@ -16,16 +16,70 @@ export default function Home() {
     success: false,
     error: null,
   });
+  const [messageLength, setMessageLength] = useState(0);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus({ loading: true, success: false, error: null });
 
     const formData = new FormData(e.currentTarget);
+    const name = (formData.get('name') as string)?.trim() || '';
+    const email = (formData.get('email') as string)?.trim() || '';
+    const message = (formData.get('message') as string)?.trim() || '';
+
+    // Client-side validation
+    if (name.length < 2) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error:
+          language === 'en'
+            ? 'Name must be at least 2 characters long'
+            : 'השם חייב להכיל לפחות 2 תווים',
+      });
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error:
+          language === 'en'
+            ? 'Please enter a valid email address'
+            : 'אנא הזן כתובת אימייל תקינה',
+      });
+      return;
+    }
+
+    if (message.length < 10) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error:
+          language === 'en'
+            ? 'Message must be at least 10 characters long'
+            : 'ההודעה חייבת להכיל לפחות 10 תווים',
+      });
+      return;
+    }
+
+    if (message.length > 5000) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error:
+          language === 'en'
+            ? 'Message must be less than 5000 characters'
+            : 'ההודעה חייבת להיות פחות מ-5000 תווים',
+      });
+      return;
+    }
+
     const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      message: formData.get('message') as string,
+      name,
+      email,
+      message,
     };
 
     try {
@@ -40,6 +94,18 @@ export default function Home() {
       const result = await response.json();
 
       if (!response.ok) {
+        // Handle rate limiting with custom message
+        if (response.status === 429) {
+          const retryAfter = result.retryAfter
+            ? Math.ceil(result.retryAfter / 60)
+            : null;
+          const errorMessage = retryAfter
+            ? language === 'en'
+              ? `Too many requests. Please try again in ${retryAfter} minute${retryAfter > 1 ? 's' : ''}.`
+              : `יותר מדי בקשות. אנא נסה שוב בעוד ${retryAfter} דקות.`
+            : result.error || 'Too many requests. Please try again later.';
+          throw new Error(errorMessage);
+        }
         throw new Error(result.error || 'Failed to send message');
       }
 
@@ -269,6 +335,7 @@ export default function Home() {
                   className={styles.input}
                   required
                   disabled={formStatus.loading}
+                  maxLength={100}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -282,6 +349,7 @@ export default function Home() {
                   className={styles.input}
                   required
                   disabled={formStatus.loading}
+                  maxLength={254}
                 />
               </div>
               <div className={styles.formGroup}>
@@ -295,7 +363,13 @@ export default function Home() {
                   rows={5}
                   required
                   disabled={formStatus.loading}
+                  maxLength={5000}
+                  onChange={(e) => setMessageLength(e.target.value.length)}
                 ></textarea>
+                <div className={styles.charCount}>
+                  {messageLength}/5000{' '}
+                  {language === 'en' ? 'characters' : 'תווים'}
+                </div>
               </div>
               <button
                 type="submit"

@@ -178,6 +178,19 @@
   min-height: 120px;
 }
 
+.charCount {
+  font-size: $fs-sm;
+  color: $text-light;
+  text-align: right;
+  margin-top: $spacing-xs;
+}
+
+:root[data-theme='dark'] {
+  .charCount {
+    color: $text-light-dark;
+  }
+}
+
 .submitButton {
   padding: $spacing-sm $spacing-lg;
   background: $primary-color;
