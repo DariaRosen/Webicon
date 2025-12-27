@@ -390,6 +390,15 @@
   gap: $spacing-md;
 }
 
+.formMessage {
+  padding: $spacing-sm;
+  border-radius: 8px;
+  font-size: $fs-base;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: $spacing-sm;
+}
+
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -426,6 +435,12 @@
     outline: none;
     border-color: $primary-color;
     box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: $bg-off-white;
   }
 }
 
@@ -469,6 +484,18 @@
 
   &:active {
     transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+
+    &:hover {
+      background: $primary-color;
+      transform: none;
+      box-shadow: none;
+    }
   }
 }
 

@@ -1,10 +1,67 @@
 'use client';
 
+import { useState, FormEvent } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './page.module.scss';
 
 export default function Contact() {
   const { language } = useLanguage();
+  const [formStatus, setFormStatus] = useState<{
+    loading: boolean;
+    success: boolean;
+    error: string | null;
+  }>({
+    loading: false,
+    success: false,
+    error: null,
+  });
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus({ loading: true, success: false, error: null });
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      message: formData.get('message') as string,
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
+      setFormStatus({ loading: false, success: true, error: null });
+      e.currentTarget.reset();
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus((prev) => ({ ...prev, success: false }));
+      }, 5000);
+    } catch (error) {
+      setFormStatus({
+        loading: false,
+        success: false,
+        error:
+          error instanceof Error
+            ? error.message
+            : language === 'en'
+              ? 'Failed to send message. Please try again later.'
+              : 'שליחת ההודעה נכשלה. אנא נסה שוב מאוחר יותר.',
+      });
+    }
+  };
 
   return (
     <section className={styles.contact}>
@@ -33,7 +90,19 @@ export default function Contact() {
               </p>
             </div>
           </div>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            {formStatus.success && (
+              <div className={styles.formMessage} style={{ color: 'green' }}>
+                {language === 'en'
+                  ? 'Message sent successfully! We will get back to you soon.'
+                  : 'ההודעה נשלחה בהצלחה! נחזור אליך בהקדם.'}
+              </div>
+            )}
+            {formStatus.error && (
+              <div className={styles.formMessage} style={{ color: 'red' }}>
+                {formStatus.error}
+              </div>
+            )}
             <div className={styles.formGroup}>
               <label htmlFor="name" className={styles.label}>
                 {language === 'en' ? 'Name' : 'שם'}
@@ -44,6 +113,7 @@ export default function Contact() {
                 name="name"
                 className={styles.input}
                 required
+                disabled={formStatus.loading}
               />
             </div>
             <div className={styles.formGroup}>
@@ -56,6 +126,7 @@ export default function Contact() {
                 name="email"
                 className={styles.input}
                 required
+                disabled={formStatus.loading}
               />
             </div>
             <div className={styles.formGroup}>
@@ -68,10 +139,21 @@ export default function Contact() {
                 className={styles.textarea}
                 rows={5}
                 required
+                disabled={formStatus.loading}
               ></textarea>
             </div>
-            <button type="submit" className={styles.submitButton}>
-              {language === 'en' ? 'Send Message' : 'שלח הודעה'}
+            <button
+              type="submit"
+              className={styles.submitButton}
+              disabled={formStatus.loading}
+            >
+              {formStatus.loading
+                ? language === 'en'
+                  ? 'Sending...'
+                  : 'שולח...'
+                : language === 'en'
+                  ? 'Send Message'
+                  : 'שלח הודעה'}
             </button>
           </form>
         </div>
