@@ -49,6 +49,7 @@ RESEND_TO_EMAIL=your-email@gmail.com   # Optional, defaults to daria.sk135@gmail
 
 # MongoDB (Optional - contact form will work without it)
 # You can use either MONGO_URL or MONGODB_URI
+# Get your connection string from MongoDB Atlas dashboard
 MONGO_URL=your_mongodb_connection_string_here
 # OR
 MONGODB_URI=your_mongodb_connection_string_here
