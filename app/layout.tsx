@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.scss';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
+import { StickyWhatsApp } from '@/components/StickyWhatsApp/StickyWhatsApp';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -37,6 +38,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <StickyWhatsApp />
           </LanguageProvider>
         </ThemeProvider>
       </body>

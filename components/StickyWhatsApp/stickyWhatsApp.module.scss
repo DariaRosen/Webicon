@@ -1,0 +1,56 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.stickyWhatsApp {
+  position: fixed;
+  bottom: $spacing-md;
+  right: $spacing-md;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all $transition-base;
+  z-index: 999;
+  cursor: pointer;
+
+  @media (min-width: 1300px) {
+    display: none;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+[dir='rtl'] .stickyWhatsApp {
+  right: auto;
+  left: $spacing-md;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+:root[data-theme='dark'] {
+  .stickyWhatsApp {
+    background: #25d366;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
