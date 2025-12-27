@@ -35,15 +35,15 @@ export const Footer = () => {
                   <a href="/">{language === 'en' ? 'Home' : 'בית'}</a>
                 </li>
                 <li>
-                  <a href="/about">{language === 'en' ? 'About Us' : 'אודותינו'}</a>
+                  <a href="/#about">{language === 'en' ? 'About Us' : 'אודותינו'}</a>
                 </li>
                 <li>
-                  <a href="/projects">
+                  <a href="/#projects">
                     {language === 'en' ? 'Our Projects' : 'הפרויקטים שלנו'}
                   </a>
                 </li>
                 <li>
-                  <a href="/products">
+                  <a href="/#products">
                     {language === 'en' ? 'Our Products' : 'המוצרים שלנו'}
                   </a>
                 </li>
@@ -56,15 +56,15 @@ export const Footer = () => {
               </h3>
               <ul className={styles.linksList}>
                 <li>
-                  <a href="/reviews">{language === 'en' ? 'Reviews' : 'ביקורות'}</a>
+                  <a href="/#reviews">{language === 'en' ? 'Reviews' : 'ביקורות'}</a>
                 </li>
                 <li>
-                  <a href="/clients">
+                  <a href="/#clients">
                     {language === 'en' ? 'Our Clients' : 'הלקוחות שלנו'}
                   </a>
                 </li>
                 <li>
-                  <a href="/contact">
+                  <a href="/#contact">
                     {language === 'en' ? 'Contact Us' : 'צור קשר'}
                   </a>
                 </li>
