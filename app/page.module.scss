@@ -39,6 +39,29 @@
   text-align: center;
 }
 
+.logoWrapper {
+  margin-bottom: $spacing-lg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint(md) {
+    display: none;
+  }
+}
+
+.heroLogo {
+  max-height: 120px;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
+
+  @media (max-width: 600px) {
+    max-height: 100px;
+  }
+}
+
 .title {
   font-size: $fs-2xl;
   font-weight: 700;

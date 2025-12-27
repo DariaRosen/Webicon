@@ -134,6 +134,13 @@ export default function Home() {
     <>
       <section className={styles.hero}>
         <div className={styles.container}>
+          <div className={styles.logoWrapper}>
+            <img 
+              src="/Webicon_logo-removebg.png" 
+              alt="Webicon" 
+              className={styles.heroLogo}
+            />
+          </div>
           <h1 className={styles.title}>
             {language === 'en' ? (
               <>

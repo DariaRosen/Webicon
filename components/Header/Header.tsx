@@ -12,7 +12,6 @@ import { NavigationItem } from '@/types';
 export const Header = () => {
   const { t, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
@@ -101,13 +100,8 @@ export const Header = () => {
     };
   }, []);
 
-  const handleMobileMenuToggle = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    setIsMobileMenuOpen(false);
-    
     // If it's an anchor link (starts with #)
     if (href.startsWith('#')) {
       e.preventDefault();
@@ -133,8 +127,6 @@ export const Header = () => {
   };
 
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    setIsMobileMenuOpen(false);
-    
     // If we're on the home page, scroll to top and clear active section
     if (pathname === '/') {
       e.preventDefault();
@@ -154,7 +146,7 @@ export const Header = () => {
       <div className={styles.container}>
         {/* Logo */}
         <Link href="/" className={styles.logo}>
-          <img src="/Webicon_logo-removebg-preview.png" alt="Webicon Logo" className={styles.logoImage} />
+          <img src="/Webicon_logo-removebg.png" alt="Webicon Logo" className={styles.logoImage} />
         </Link>
 
         {/* Navigation */}
@@ -212,50 +204,6 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className={`${styles.mobileMenuButton} ${
-            isMobileMenuOpen ? styles.open : ''
-          }`}
-          onClick={handleMobileMenuToggle}
-          aria-label="Toggle mobile menu"
-          type="button"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        className={`${styles.mobileMenu} ${
-          isMobileMenuOpen ? styles.open : ''
-        }`}
-      >
-        <nav className={styles.mobileNav}>
-          {navigation.map((item) => (
-            item.href === '/' ? (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={styles.mobileNavItem}
-                onClick={handleHomeClick}
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <a
-                key={item.href}
-                href={item.href}
-                className={styles.mobileNavItem}
-                onClick={(e) => handleNavClick(e, item.href)}
-              >
-                {item.label}
-              </a>
-            )
-          ))}
-        </nav>
       </div>
     </header>
   );

@@ -5,6 +5,7 @@ import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { StickyWhatsApp } from '@/components/StickyWhatsApp/StickyWhatsApp';
 import { StickyToggles } from '@/components/StickyToggles/StickyToggles';
+import { StickyMobileMenu } from '@/components/StickyMobileMenu/StickyMobileMenu';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -35,12 +36,13 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <Header />
-            <main style={{ paddingTop: 'var(--header-height, 100px)', minHeight: 'calc(100vh - var(--header-height, 100px))' }}>
+            <main className="main-content">
               {children}
             </main>
             <Footer />
             <StickyWhatsApp />
             <StickyToggles />
+            <StickyMobileMenu />
           </LanguageProvider>
         </ThemeProvider>
       </body>
