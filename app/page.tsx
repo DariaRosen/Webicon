@@ -150,17 +150,42 @@ export default function Home() {
       <section className={styles.section} id="about">
         <div className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>
-            {language === 'en' ? 'About Us' : 'אודותינו'}
+            {language === 'en' ? 'About Webicon' : 'אודות Webicon'}
           </h2>
           <p className={styles.sectionText}>
             {language === 'en'
-              ? 'We are a team of passionate developers and designers dedicated to creating exceptional digital experiences across web, mobile, and product strategy.'
-              : 'אנחנו צוות של מפתחים ומעצבים נלהבים, שמקדישים את עצמם ליצירת חוויות דיגיטליות יוצאות דופן – אתרים, אפליקציות ואסטרטגיית מוצר.'}
+              ? 'Webicon is a digital product studio specializing in the design and development of high-quality, scalable, and future-ready digital solutions.'
+              : 'נעים להכיר! Webicon הוא סטודיו לפיתוח ועיצוב מוצרים דיגיטליים, המתמחה ביצירת מערכות איכותיות, יציבות ומוכנות לצמיחה עתידית.'}
           </p>
           <p className={styles.sectionText}>
             {language === 'en'
-              ? 'From discovery to launch, we help you ship fast, look great, and perform even better.'
-              : 'משלב המחקר ועד ההשקה – אנחנו עוזרים לכם לצאת מהר, להיראות מצוין ולבצע בצורה מיטבית.'}
+              ? 'We design and build websites, applications, and digital products with a strong emphasis on solid architecture, security, performance, and long-term maintainability.'
+              : 'ב Webicon אנחנו מפתחים אתרים, אפליקציות ומוצרים דיגיטליים תוך הקפדה על סטנדרטים גבוהים של ארכיטקטורה, אבטחה, ביצועים ועיצוב.'}
+          </p>
+          <p className={styles.sectionText}>
+            {language === 'en'
+              ? 'Every project is approached from a product-oriented perspective, combining technical excellence with modern design and a deep understanding of business and system requirements.'
+              : 'כל פרויקט נבנה מתוך חשיבה על המוצר ומתוך הבנה מעמיקה של הצרכים העסקיים, הטכנולוגיים והחזותיים של הלקוח.'}
+          </p>
+          <p className={styles.sectionText}>
+            {language === 'en'
+              ? 'We believe that a strong digital product is the result of a precise and structured process: clear specification, thoughtful user experience, modern visual design, and robust end-to-end development.'
+              : 'אנו מאמינים שמוצר דיגיטלי איכותי הוא תוצאה של תהליך מדויק: איפיון נכון, עיצוב מודרני, פיתוח מתקדם ותשתית גמישה שמאפשרת תחזוקה, הרחבות ושינויים לאורך זמן.'}
+          </p>
+          <p className={styles.sectionText}>
+            {language === 'en'
+              ? 'Our solutions are built to evolve - allowing for future growth, changes, and integrations without compromising stability or quality.'
+              : 'לכן אנו מלווים כל פרויקט מהשלב הראשוני ועד השקה, עם תיעוד מסודר, קוד נקי ופתרון יציב שנבנה לטווח ארוך.'}
+          </p>
+          <p className={styles.sectionText}>
+            {language === 'en'
+              ? 'At Webicon, we work with advanced, industry-leading technologies and adhere to high engineering standards.'
+              : 'העבודה ב Webicon משלבת עיצוב מוקפד, גרפיקה מתקדמת - כולל שילוב אלמנטים בתלת-ממד וטכנולוגיות עדכניות.'}
+          </p>
+          <p className={styles.sectionText}>
+            {language === 'en'
+              ? 'Our work often incorporates refined visual elements, including advanced graphics and optional 3D components, resulting in digital products that are both technically sound and visually polished. We accompany our clients from early discovery stages through delivery and launch, providing professional guidance, clear communication, and solutions designed for long-term use.'
+              : 'התוצאה היא מוצר דיגיטלי מדויק, מאובטח ומותאם לסטנדרטים של ארגונים, סטארטאפים ולקוחות המחפשים איכות ללא פשרות.'}
           </p>
         </div>
       </section>
