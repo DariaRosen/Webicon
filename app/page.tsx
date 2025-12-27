@@ -135,14 +135,24 @@ export default function Home() {
       <section className={styles.hero}>
         <div className={styles.container}>
           <h1 className={styles.title}>
-            {language === 'en'
-              ? 'Welcome to Webicon'
-              : 'ברוכים הבאים ל-Webicon'}
+            {language === 'en' ? (
+              <>
+                Webicon, your creative partner for digital product development
+                <br />
+                bringing together planning, design, and technology
+              </>
+            ) : (
+              <>
+                Webicon, השותף הקריאטיבי לפיתוח מוצרים דיגיטליים
+                <br />
+                שמחבר בין תכנון, עיצוב וטכנולוגיה
+              </>
+            )}
           </h1>
           <p className={styles.subtitle}>
             {language === 'en'
-              ? 'We build amazing apps, websites, and landing pages'
-              : 'אנו בונים אפליקציות, אתרים ודפי נחיתה מדהימים'}
+              ? 'We design and develop websites, applications, and digital solutions with robust architecture, modern design, and long-term flexibility.'
+              : 'אנחנו מתכננים, מעצבים ומפתחים אתרים, אפליקציות ופתרונות דיגיטליים עם תשתית יציבה, עיצוב מודרני וחשיבה לטווח ארוך.'}
           </p>
         </div>
       </section>
