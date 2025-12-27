@@ -10,18 +10,18 @@ export default function About() {
     <section className={styles.about}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          {language === 'en' ? 'About Us' : 'אודות Webicon'}
+          {language === 'en' ? 'About Webicon' : 'אודות Webicon'}
         </h1>
         <div className={styles.content}>
           <div className={styles.intro}>
             <p className={styles.text}>
               {language === 'en'
-                ? 'We are a team of passionate developers and designers dedicated to creating exceptional digital experiences. Our expertise spans across web development, mobile applications, and custom software solutions.'
+                ? 'Webicon is a digital product studio specializing in the design and development of high-quality, scalable, and future-ready digital solutions.'
                 : 'נעים להכיר, Webicon. סטודיו לפיתוח ועיצוב מוצרים דיגיטליים, המתמחה ביצירת מערכות איכותיות, יציבות ומוכנות לצמיחה עתידית.'}
             </p>
             <p className={styles.text}>
               {language === 'en'
-                ? 'With years of experience in the industry, we have helped numerous clients bring their ideas to life through innovative and user-friendly solutions.'
+                ? 'We design and build websites, applications, and digital products with a strong emphasis on solid architecture, security, performance, and long-term maintainability. Every project is approached from a product-oriented perspective, combining technical excellence with modern design and a deep understanding of business and system requirements.'
                 : 'ב-Webicon אנחנו מפתחים אתרים, אפליקציות ומוצרים דיגיטליים תוך הקפדה על סטנדרטים גבוהים של ארכיטקטורה, אבטחה, ביצועים ועיצוב. כל פרויקט נבנה מתוך חשיבה מוצרית ומתוך הבנה מעמיקה של הצרכים העסקיים, הטכנולוגיים והחזותיים של הלקוח.'}
             </p>
           </div>
@@ -29,30 +29,30 @@ export default function About() {
           <div className={styles.philosophy}>
             <p className={styles.text}>
               {language === 'en'
-                ? 'We believe in building products that are not just functional, but also scalable, maintainable, and future-proof.'
+                ? 'We believe that a strong digital product is the result of a precise and structured process: clear specification, thoughtful user experience, modern visual design, and robust end-to-end development. Our solutions are built to evolve — allowing for future growth, changes, and integrations without compromising stability or quality.'
                 : 'אנו מאמינים שמוצר דיגיטלי איכותי הוא תוצאה של תהליך מדויק: איפיון נכון, עיצוב מודרני, פיתוח מתקדם ותשתית גמישה שמאפשרת תחזוקה, הרחבות ושינויים לאורך זמן. לכן אנו מלווים כל פרויקט מהשלב הראשוני ועד השקה, עם תיעוד מסודר, קוד נקי ופתרון יציב שנבנה לטווח ארוך.'}
             </p>
             <p className={styles.text}>
               {language === 'en'
-                ? 'Our work combines meticulous design, advanced graphics, and cutting-edge technologies to deliver precise, secure, and high-quality digital products.'
+                ? 'At Webicon, we work with advanced, industry-leading technologies and adhere to high engineering standards. Our work often incorporates refined visual elements, including advanced graphics and optional 3D components, resulting in digital products that are both technically sound and visually polished. We accompany our clients from early discovery stages through delivery and launch, providing professional guidance, clear communication, and solutions designed for long-term use.'
                 : 'העבודה ב-Webicon משלבת עיצוב מוקפד, גרפיקה מתקדמת – כולל שילוב אלמנטים בתלת־ממד – וטכנולוגיות עדכניות מהשורה הראשונה בשוק. התוצאה היא מוצר דיגיטלי מדויק, מאובטח ומותאם לסטנדרטים של ארגונים, סטארטאפים ולקוחות המחפשים איכות ללא פשרות.'}
             </p>
           </div>
 
           <div className={styles.benefits}>
             <h2 className={styles.subtitle}>
-              {language === 'en' ? 'What You Get at Webicon' : 'מה תקבלו ב-Webicon'}
+              {language === 'en' ? 'What You Get with Webicon' : 'מה תקבלו ב-Webicon'}
             </h2>
             <ul className={styles.benefitsList}>
               {language === 'en' ? (
                 <>
-                  <li>End-to-end digital solutions – from specification to launch</li>
-                  <li>Combination of design, development, and product thinking</li>
-                  <li>Clean, secure code built for maintenance and future expansion</li>
-                  <li>Use of advanced technologies and modern standards</li>
-                  <li>Contemporary design, including 3D graphics and elements</li>
-                  <li>Professional support, clear communication, and high execution standards</li>
-                  <li>Full adaptation to the product, organization, and its technological needs</li>
+                  <li>End-to-end digital solutions — from specification to deployment</li>
+                  <li>A balanced combination of design, engineering, and product thinking</li>
+                  <li>Clean, secure, and maintainable codebases</li>
+                  <li>Scalable architectures designed for future growth</li>
+                  <li>Modern UI design, with optional advanced and 3D visual elements</li>
+                  <li>Professional guidance and high execution standards</li>
+                  <li>Solutions tailored to the product, organization, and technical requirements</li>
                 </>
               ) : (
                 <>
