@@ -4,6 +4,7 @@ import './globals.scss';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
 import { StickyWhatsApp } from '@/components/StickyWhatsApp/StickyWhatsApp';
+import { StickyToggles } from '@/components/StickyToggles/StickyToggles';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -39,6 +40,7 @@ export default function RootLayout({
             </main>
             <Footer />
             <StickyWhatsApp />
+            <StickyToggles />
           </LanguageProvider>
         </ThemeProvider>
       </body>

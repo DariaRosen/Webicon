@@ -1,0 +1,44 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.stickyToggles {
+  position: fixed;
+  bottom: $spacing-md;
+  left: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  align-items: center;
+  z-index: 998;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: $spacing-xs;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 900px) {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    bottom: $spacing-sm;
+    left: $spacing-sm;
+  }
+}
+
+[dir='rtl'] .stickyToggles {
+  left: auto;
+  right: $spacing-md;
+
+  @media (max-width: 600px) {
+    right: $spacing-sm;
+  }
+}
+
+:root[data-theme='dark'] {
+  .stickyToggles {
+    background: rgba($bg-off-white-dark, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
