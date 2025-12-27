@@ -10,7 +10,7 @@ export default function About() {
     <section className={styles.about}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          {language === 'en' ? 'About Webicon' : 'אודות Webicon'}
+          {language === 'en' ? 'About Us' : 'אודות Webicon'}
         </h1>
         <div className={styles.content}>
           <div className={styles.intro}>
