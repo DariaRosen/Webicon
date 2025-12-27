@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { ObjectId } from 'mongodb';
+import { getDatabase } from '@/lib/mongodb';
+import { ContactSubmission } from '@/lib/models/ContactSubmission';
 
 const resendApiKey = process.env.RESEND_API_KEY;
 if (!resendApiKey) {
@@ -161,35 +164,121 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Prepare submission data for MongoDB
+    const userAgent = request.headers.get('user-agent') || undefined;
+    const submissionData: Omit<ContactSubmission, '_id'> = {
+      name,
+      email,
+      message,
+      ipAddress: clientIP !== 'unknown' ? clientIP : undefined,
+      userAgent,
+      createdAt: new Date(),
+      emailSent: false,
+    };
+
+    // Save to MongoDB first (even if email fails, we have the submission)
+    let submissionId: ObjectId | undefined;
+    let emailId: string | undefined;
+    let emailSent = false;
+
+    try {
+      const db = await getDatabase();
+      if (db) {
+        const collection = db.collection<ContactSubmission>('contact_submissions');
+        const result = await collection.insertOne(submissionData as any);
+        submissionId = result.insertedId;
+        console.log('Contact submission saved to MongoDB:', submissionId.toString());
+      } else {
+        console.warn('MongoDB not available. Skipping database save.');
+      }
+    } catch (dbError) {
+      console.error('Error saving to MongoDB:', dbError);
+      // Continue even if DB save fails - we still want to try sending the email
+    }
+
     // Send email using Resend
     // Use custom domain email if configured, otherwise fallback to Resend's default
     const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
     const toEmail = process.env.RESEND_TO_EMAIL || 'daria.sk135@gmail.com';
 
-    const emailResult = await resend.emails.send({
-      from: fromEmail,
-      to: toEmail,
-      subject: `New Contact Form Submission from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-        <hr>
-        <p><small>Submitted at: ${new Date().toLocaleString()}</small></p>
-      `,
-      replyTo: email,
-    });
+    try {
+      const emailResult = await resend.emails.send({
+        from: fromEmail,
+        to: toEmail,
+        subject: `New Contact Form Submission from ${name}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong></p>
+          <p>${message.replace(/\n/g, '<br>')}</p>
+          <hr>
+          <p><small>Submitted at: ${new Date().toLocaleString()}</small></p>
+        `,
+        replyTo: email,
+      });
 
-    // Log for debugging
-    console.log('Contact form submission:', {
-      name,
-      email,
-      message,
-      timestamp: new Date().toISOString(),
-      emailId: emailResult.id,
-    });
+      emailId = emailResult.id;
+      emailSent = true;
+
+      // Update MongoDB record with email status
+      if (submissionId) {
+        try {
+          const db = await getDatabase();
+          if (db) {
+            const collection = db.collection<ContactSubmission>('contact_submissions');
+            await collection.updateOne(
+              { _id: submissionId },
+              {
+                $set: {
+                  emailSent: true,
+                  emailId: emailId,
+                },
+              }
+            );
+          }
+        } catch (updateError) {
+          console.error('Error updating MongoDB with email status:', updateError);
+          // Non-critical error, continue
+        }
+      }
+
+      console.log('Contact form submission processed:', {
+        submissionId,
+        name,
+        email,
+        emailId,
+        timestamp: new Date().toISOString(),
+      });
+    } catch (emailError) {
+      console.error('Error sending email:', emailError);
+      
+      // Update MongoDB record to indicate email failed
+      if (submissionId) {
+        try {
+          const db = await getDatabase();
+          if (db) {
+            const collection = db.collection<ContactSubmission>('contact_submissions');
+            await collection.updateOne(
+              { _id: submissionId },
+              {
+                $set: {
+                  emailSent: false,
+                },
+              }
+            );
+          }
+        } catch (updateError) {
+          console.error('Error updating MongoDB with email failure:', updateError);
+        }
+      }
+
+      // Still return success if saved to DB, but log the email error
+      // In production, you might want to return an error here
+      if (!submissionId) {
+        throw emailError; // Only throw if we also failed to save to DB
+      }
+    }
 
     return NextResponse.json(
       { message: 'Message sent successfully!' },
